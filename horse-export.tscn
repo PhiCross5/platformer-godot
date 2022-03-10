@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://horse-export.gltf" type="PackedScene" id=1]
+[ext_resource path="res://horse-export-RUMINANTE.gd" type="Script" id=2]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+
+[node name="horse-export" instance=ExtResource( 1 )]
+transform = Transform( 5.8587, 0, 0, 0, 5.8587, 0, 0, 0, 5.8587, 0, 0, 0 )
+script = ExtResource( 2 )
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="3"]
+tree_root = SubResource( 1 )
+anim_player = NodePath("../AnimationPlayer")

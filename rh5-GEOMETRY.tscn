@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://rh5-GEOMETRY.glb" type="PackedScene" id=1]
+
+[node name="rh5-GEOMETRY" instance=ExtResource( 1 )]
