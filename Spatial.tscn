@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://rh.gd" type="Script" id=1]
 [ext_resource path="res://rh5-GEOMETRY.glb" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://terrain2.glb" type="PackedScene" id=5]
 [ext_resource path="res://hill2.glb" type="PackedScene" id=6]
 [ext_resource path="res://hill3.glb" type="PackedScene" id=7]
+[ext_resource path="res://Camera.gd" type="Script" id=8]
+[ext_resource path="res://rh5.gltf" type="PackedScene" id=9]
 
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 1, 0.777544, 1 )
@@ -22,6 +24,16 @@ extents = Vector3( 1, 0.556389, 9.03756 )
 [sub_resource type="CubeMesh" id=5]
 
 [node name="Spatial" type="Spatial"]
+transform = Transform( 0.0724325, 0, 0, 0, 0.0724325, 0, 0, 0, 0.0724325, 0, 0, 0 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.83931, 18.926, 46.7791 )
+near = 0.1
+far = 60000.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="rh" type="KinematicBody" parent="."]
 transform = Transform( 2.89292, 0, 0, 0, 2.89292, 0, 0, 0, 2.89292, 1.94643, -0.496641, 0.549924 )
@@ -36,16 +48,12 @@ shape = SubResource( 4 )
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.326394, 0.226258, 0.0638548 )
 skeleton = NodePath("../..")
 
-[node name="rh5-GEOMETRY" parent="rh/MeshInstance" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 1.86928, 0, -1.70455 )
+[node name="rh5-GEOMETRY" parent="rh/MeshInstance" instance=ExtResource( 9 )]
+transform = Transform( 1.47096, 0, 0, 0, 1.47096, 0, 0, 0, 1.47096, 0, 0, 0 )
 
-[node name="Camera" type="Camera" parent="rh"]
-transform = Transform( 0.345672, 0, 0, 0, 0.345672, 0, 0, 0, 0.345672, 2.037, 6.71384, 15.9801 )
-near = 0.1
-far = 60000.0
-__meta__ = {
-"_edit_group_": true
-}
+[node name="rh5-GEOMETRY-OLD" parent="rh/MeshInstance" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 1.86928, 0, -1.70455 )
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="rh"]
 

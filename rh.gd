@@ -10,22 +10,25 @@ signal hit
 #physics parameters
 var velocity =  Vector3(0,0,0)
 const GRAVITY = Vector3(0,-1,0)
-export var gravityMultiplier = 200
+export var gravityMultiplier = 20
 
 var gravityPull = 0
-export var terminalVelocity = 375
-export var terminalFall = 375
+export var terminalVelocity = 75
+export var terminalFall = 75
 export var jumpingForce = 0.3
-export var moveSpeed = 56
+export var moveSpeed = 6
 export var jumpingFallout = 0.3
 var jumpHold : bool
+var flip : bool = false
+
+var originalBasis = transform.basis
 
 #state machine definitions
 enum {IDLE, WALKING, AIRBORNE, JUMPING}
 export var currentState = WALKING
 
 #child nodes controlled
-var animator
+var animator : AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,10 +52,13 @@ func stateMachine(delta):
 	#COMPÚTE MOVEMENT VECTOR
 	var movement = Vector3.ZERO
 	if (Input.is_action_pressed("ui_right")):
+		flip = false
 		movement += Vector3(1,0,0) * moveSpeed
+		transform.basis = Basis.IDENTITY * originalBasis
 	if (Input.is_action_pressed("ui_left")):
+		flip = true
 		movement += Vector3(-1,0,0) * moveSpeed
-		
+		transform.basis = Basis.FLIP_X * originalBasis
 	#ACTUAL STATE MACHINE PART
 	match currentState:
 		IDLE:
