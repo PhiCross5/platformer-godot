@@ -87,7 +87,7 @@ func stateMachine(delta):
 			else:
 				gravityPull = min(gravityPull+(gravityMultiplier * delta), terminalFall)
 			var collision = move_and_collide((movement + (gravityPull * GRAVITY)) * delta)
-			if collision:
+			if collision and collision.normal.dot(Vector3(0,1,0))>0.9 :
 				gravityPull= 0
 				currentState = WALKING
 

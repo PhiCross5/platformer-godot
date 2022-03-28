@@ -1,6 +1,7 @@
 extends Camera
 
-var target : Spatial
+export var target_path = "../stage/rh"
+var target: Spatial
 export var afastamento : Vector3 = Vector3(0,9,47)
 # Declare member variables here. Examples:
 # var a = 2
@@ -9,7 +10,7 @@ export var afastamento : Vector3 = Vector3(0,9,47)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	target = get_node("../rh")
+	target = get_node(target_path)
 	pass # Replace with function body.
 
 func _physics_process(delta):
