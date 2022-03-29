@@ -1,5 +1,7 @@
 extends Area
 
+export var quad_url = "victory_board.tscn"
+var board = load(quad_url)
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -15,3 +17,9 @@ func _ready():
 #func _process(delta):
 #	pass
 
+
+
+func _on_Destination2_body_entered(body):
+	print("player has reached final destination.")
+	add_child(board.instance())
+	pass # Replace with function body.

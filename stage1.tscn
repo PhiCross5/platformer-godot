@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://horse-export-RUMINANTE.gd" type="Script" id=1]
 [ext_resource path="res://horse-lowpoly.glb" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://skipper.tscn" type="PackedScene" id=8]
 [ext_resource path="res://stage.gd" type="Script" id=9]
 [ext_resource path="res://boundary.gd" type="Script" id=10]
+[ext_resource path="res://rosquinharosa.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CubeMesh" id=3]
 
@@ -206,16 +207,14 @@ mesh = SubResource( 5 )
 skeleton = NodePath("../../../../../../..")
 material/0 = null
 
-[node name="skipper" parent="stage" instance=ExtResource( 8 )]
-transform = Transform( 4.2363, 0, -6.18702e-08, 0, 5.65172, 0, -6.18702e-08, 0, 5.65172, -0.895218, 20.397, 55.2723 )
-destination = 1
-
 [node name="skipper2" parent="stage" instance=ExtResource( 8 )]
-transform = Transform( 4.2363, 0, -6.18701e-08, 0, 5.65172, 0, -6.18702e-08, 0, 5.65172, -0.895238, 40.994, 527.464 )
+transform = Transform( 4.2363, 0, -1.57237e-06, 0, 43.8256, 0, -1.57238e-06, 0, 40.208, -0.895238, 60.216, 532.313 )
+collision_layer = 0
 destination = 1
 
 [node name="boundary" type="Area" parent="stage"]
 transform = Transform( 4.96183, 0, -2.33201e-05, 0, 27.4461, 0, -2.332e-05, 0, 538.463, -5.71257e-06, -66.02, 130.688 )
+collision_layer = 0
 script = ExtResource( 10 )
 
 [node name="CollisionShape" type="CollisionShape" parent="stage/boundary"]
@@ -241,6 +240,9 @@ script = ExtResource( 10 )
 
 [node name="CollisionShape" type="CollisionShape" parent="stage/boundary4"]
 shape = SubResource( 7 )
+
+[node name="rosquinharosa" parent="stage" instance=ExtResource( 11 )]
+transform = Transform( 337.804, 1.47659e-05, 1.47659e-05, -1.47659e-05, -1.47659e-05, 337.804, 1.47659e-05, -337.804, -1.47659e-05, 38.1909, 69.6645, 531.727 )
 
 [node name="terrain" type="Spatial" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -11.6185, -756.626 )
@@ -280,7 +282,6 @@ transform = Transform( 6.87051, -3.34468, -8.42371, 2.47588, 10.861, -2.29308, 8
 transform = Transform( 9.59713, -4.47964, 7.11457, 2.75289, 11.876, 3.76423, -7.94394, -1.29637, 9.89957, -634.41, 92.2108, 0.786347 )
 script = ExtResource( 1 )
 
-[connection signal="crossed" from="stage/skipper" to="." method="_on_skipper_crossed"]
 [connection signal="crossed" from="stage/skipper2" to="." method="_on_skipper_crossed"]
 [connection signal="body_entered" from="stage/boundary" to="." method="_on_boundary_body_entered"]
 [connection signal="body_entered" from="stage/boundary2" to="." method="_on_boundary_body_entered"]
